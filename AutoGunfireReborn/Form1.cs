@@ -15,6 +15,10 @@ namespace AutoGunfireReborn
     {
         public Form1()
         {
+            var managedDlls = Directory.GetFiles("Managed");
+            foreach(var managedDll in managedDlls)
+                if (!File.Exists(Path.GetFileName(managedDll)))
+                    File.Copy(managedDll, Path.GetFileName(managedDll));
             Injector monoInjector = new Injector("Gunfire Reborn");
 
             var dll = AssemblyDefinition.ReadAssembly("GunfireRebornMods.dll");
