@@ -6,4 +6,4 @@
 	url = https://github.com/Perfare/Il2CppDumper
 [submodule "SharpMonoInjector"]
 	path = SharpMonoInjector
-	url = https://github.com/warbler/SharpMonoInjector
+	url = https://github.com/shalzuth/SharpMonoInjector
