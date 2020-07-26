@@ -13,7 +13,7 @@ namespace GunfireRebornMods
         {
             foreach (var mod in Mods)
                 if (mod.Enabled) mod.OnGUI();
-            if (HeroMoveManager.IssFPSLockCursor) return;
+            if (Cursor.lockState == CursorLockMode.Locked) return;
             var area = new Rect(25, 25, 150, 250);
             GUI.Box(area, "shalzuth's mods");
             GUILayout.BeginArea(area);
