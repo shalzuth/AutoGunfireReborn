@@ -107,8 +107,6 @@
     <Compile Include="Init.cs" />
     <Compile Include="Mods\Aimbot.cs" />
     <Compile Include="Mods\AutoAim.cs" />
-    <Compile Include="Mods\InstantKill.cs" />
-    <Compile Include="Mods\SceneDebugger.cs" />
     <Compile Include="Mods\WeaponMod.cs" />
     <Compile Include="Mods\ExtraSensoryPerception.cs" />
     <Compile Include="Mods\FreeCam.cs" />

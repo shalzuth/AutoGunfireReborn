@@ -13,6 +13,7 @@ namespace GunfireRebornMods
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_DROP_RELIC) return true;
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_SMITH) return true;
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_SHOP) return true;
+            else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_GSCASHSHOP) return true;
             else if (obj.FightType == ServerDefine.FightType.WARRIOR_OBSTACLE_NORMAL && (obj.Shape == 4406 || obj.Shape == 4419 || obj.Shape == 4427)) return true;
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_EVENT) return true;
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_ITEMBOX) return true;
@@ -25,6 +26,7 @@ namespace GunfireRebornMods
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_DROP_RELIC) return DataMgr.GetRelicData(obj.DropOPCom.RelicSid).Name;
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_SMITH) return "Smith";
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_SHOP) return "Kermit";
+            else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_GSCASHSHOP) return "GhostKermit";
             else if (obj.FightType == ServerDefine.FightType.WARRIOR_OBSTACLE_NORMAL && (obj.Shape == 4406 || obj.Shape == 4419 || obj.Shape == 4427)) return "Vault";
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_EVENT) return "Chest";
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_ITEMBOX) return "Chest";

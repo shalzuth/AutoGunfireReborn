@@ -6,7 +6,7 @@ namespace GunfireRebornMods
         // thx https://github.com/pentium1131/GunfireReborn-aimbot
         public override void Update()
         {
-            //if (!Input.GetKey(KeyCode.Mouse0)) return;
+            if (!Input.GetKey(KeyCode.X)) return;
             var monsters = NewPlayerManager.GetMonsters();
             if (monsters != null)
             {
