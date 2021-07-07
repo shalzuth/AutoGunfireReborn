@@ -8,6 +8,9 @@ using SharpMonoInjector;
 using System.IO.Compression;
 using System.Reflection;
 using Mono.Cecil;
+using NativeNetSharp;
+using System.Text;
+using Microsoft.Win32.SafeHandles;
 
 namespace AutoGunfireReborn
 {
@@ -16,10 +19,8 @@ namespace AutoGunfireReborn
         public Form1()
         {
             var managedDlls = Directory.GetFiles("Managed");
-            foreach(var managedDll in managedDlls)
-                if (!File.Exists(Path.GetFileName(managedDll)))
-                    File.Copy(managedDll, Path.GetFileName(managedDll));
-            Injector monoInjector = new Injector("Gunfire Reborn");
+            foreach(var managedDll in managedDlls) if (!File.Exists(Path.GetFileName(managedDll))) File.Copy(managedDll, Path.GetFileName(managedDll));
+            var monoInjector = new Injector("Gunfire Reborn");
 
             var dll = AssemblyDefinition.ReadAssembly("GunfireRebornMods.dll");
             var rand = Guid.NewGuid().ToString().Replace("-", "");

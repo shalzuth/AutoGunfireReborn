@@ -14,24 +14,37 @@ namespace GunfireRebornMods
 {
     public unsafe class Init
     {
+        /*unsafe class DoHookDetour : IManagedDetour
+        {
+            private static readonly List<object> PinnedDelegates = new List<object>();
+            public T Detour<T>(IntPtr @from, T to) where T : Delegate
+            {
+                IntPtr* targetVarPointer = &from;
+                PinnedDelegates.Add(to);
+                //JmpPatch((IntPtr)targetVarPointer, Marshal.GetFunctionPointerForDelegate(to));
+                return Marshal.GetDelegateForFunctionPointer<T>(from);
+            }
+        }*/
         public static GameObject BaseObject;
         public static void Setup()
         {
 #if DEBUG
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Console.WriteLine(Environment.Version);
             Console.WriteLine(Application.unityVersion);
             Console.WriteLine(Directory.GetCurrentDirectory());
-
+            UnhollowerBaseLib.Runtime.UnityVersionHandler.Initialize(2018, 4, 20);
+            Console.WriteLine(Application.unityVersion);
             LogSupport.RemoveAllHandlers();
             LogSupport.TraceHandler += LogSupport_TraceHandler;
             LogSupport.ErrorHandler += LogSupport_TraceHandler;
             LogSupport.InfoHandler += LogSupport_TraceHandler;
             LogSupport.WarningHandler += LogSupport_TraceHandler;
 #endif
+            //ClassInjector.Detour = new DoHookDetour();
             ClassInjector.DoHook?.GetInvocationList().ToList().ForEach(d => ClassInjector.DoHook -= (Action<IntPtr,IntPtr>)d);
             ClassInjector.DoHook += JmpPatch;
             ClassInjector.RegisterTypeInIl2Cpp<ModManager>();
-
             while (BaseObject = GameObject.Find("ModManager"))
                 GameObject.DestroyImmediate(BaseObject);
             BaseObject = new GameObject("ModManager");
@@ -40,6 +53,11 @@ namespace GunfireRebornMods
             var types = Assembly.GetExecutingAssembly().GetTypes().ToList().Where(t => t.BaseType == typeof(ModBase) && !t.IsNested);
             foreach (var type in types)
                 modMgr.Mods.Add((ModBase)Activator.CreateInstance(type));
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            LogSupport.Info(e.ToString());
         }
 
         [DllImport("kernel32")] static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)]string lpFileName);

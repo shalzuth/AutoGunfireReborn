@@ -54,51 +54,48 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="csharpdata">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\csharpdata.dll</HintPath>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\csharpdata.dll</HintPath>
     </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\Il2Cppmscorlib.dll</HintPath>
+    <Reference Include="Il2Cppmscorlib, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\Il2Cppmscorlib.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\GunfireRebornDumper\bin\x64\Debug\DummyDll\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\Unity.TextMeshPro.dll</HintPath>
+    <Reference Include="UnityEngine, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.CoreModule.dll</HintPath>
+    <Reference Include="UnityEngine.IMGUIModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.IMGUIModule.dll</HintPath>
+    <Reference Include="UnityEngine.PhysicsModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.PhysicsModule.dll</HintPath>
+    <Reference Include="UnityEngine.UI, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEngine.UIElementsModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\GunfireRebornDumper\bin\Debug\ProxyDll\UnityEngine.UIModule.dll</HintPath>
+    <Reference Include="UnityEngine.UIModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\GunfireRebornDumper\bin\x64\Debug\ProxyDll\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +104,7 @@
     <Compile Include="Init.cs" />
     <Compile Include="Mods\Aimbot.cs" />
     <Compile Include="Mods\AutoAim.cs" />
+    <Compile Include="Mods\SceneDebugger.cs" />
     <Compile Include="Mods\WeaponMod.cs" />
     <Compile Include="Mods\ExtraSensoryPerception.cs" />
     <Compile Include="Mods\FreeCam.cs" />

@@ -32,27 +32,29 @@ namespace GunfireRebornMods
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_NPC_ITEMBOX) return "Chest";
             return "unk";
         }
+        public override void OnEnable()
+        {
+            foreach (var monster in NewPlayerManager.MonsterLst)
+            {
+                System.Console.WriteLine("MonsterLst : " + monster.FightType);
+            }
+            foreach (var monster in NewPlayerManager.PlayerDict)
+            {
+                var val = monster.Value;
+                System.Console.WriteLine("PlayerDict : " + monster.value.FightType);
+            }
+            foreach (var monster in NewPlayerManager.NpcLst)
+            {
+                System.Console.WriteLine("NpcLst : " + monster.FightType);
+            }
+        }
         public override void OnGUI()
         {
-            /*var monsters = GameObject.FindObjectsOfType<Transform>();
-            
-            foreach(var monster in monsters)
-            {
-                if (monster.gameObject.name.Contains("_effect")) continue;
-                if (monster.gameObject.name.Contains("67")) continue;
-                if (!monster.gameObject.name.Contains("earth")) continue;
-                var screenPos = CameraManager.MainCameraCom.WorldToScreenPoint(monster.transform.position);
-                if (screenPos.z > 0) GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 50, 50), monster.gameObject.name);
-            }*/
             try
             {
-                var mon = NewPlayerManager.GetMonsters();
-                foreach (var m in mon)
-                {
-                    if (m.BloodBarCom != null) m.BloodBarCom.ShowBloodBar();
-                }
                 foreach (var monster in NewPlayerManager.MonsterLst)
                 {
+                    if (monster.BloodBarCom != null) monster.BloodBarCom.ShowBloodBar();
                     continue;
                     if (monster.centerPointTrans == null) continue;
                     var screenPos = CameraManager.MainCameraCom.WorldToScreenPoint(monster.centerPointTrans.transform.position);

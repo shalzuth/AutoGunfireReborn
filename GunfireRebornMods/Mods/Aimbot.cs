@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
+using System.Runtime.InteropServices;
 namespace GunfireRebornMods
 {
     public class Aimbot : ModBase
     {
+        [DllImport("user32.dll")] static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
+        bool Toggled = false;
         // thx https://github.com/pentium1131/GunfireReborn-aimbot
         public override void Update()
         {
-            if (!Input.GetKey(KeyCode.X)) return;
+            if (Input.GetKeyDown(KeyCode.X)) Toggled = !Toggled;
+            if (Toggled) return;
             var monsters = NewPlayerManager.GetMonsters();
             if (monsters != null)
             {
@@ -14,7 +18,7 @@ namespace GunfireRebornMods
                 var closestMonsterDist = 99999f;
                 foreach (var monster in monsters)
                 {
-                    var monsterTransform = monster.BodyPartCom.GetWeakTrans();
+                    var monsterTransform = monster.BodyPartCom.GetWeakTrans(true);
                     if (monsterTransform == null) continue;
                     var vec = CameraManager.MainCameraCom.WorldToViewportPoint(monsterTransform.position);
                     if (true)
@@ -50,18 +54,38 @@ namespace GunfireRebornMods
 
                 }
                 if (closestMonster != null)
-                {
-                    var myPosition =  HeroCameraName.HeroCameraManager.HeroObj.gameTrans.position;
-                    myPosition.y += 1;
+                {/*
+                    var myPosition = HeroCameraName.HeroCameraManager.HeroObj.gameTrans.position;
+                    //System.Console.WriteLine(myPosition.x + " : " + myPosition.y + " : " + myPosition.z);
+                    //myPosition.y += 1;
                     var fw = closestMonster.position - myPosition;
                     //fw.y += 0.12f;
                     var rot = Quaternion.LookRotation(fw);
-                    HeroCameraName.HeroCameraManager.HeroObj.gameTrans.rotation = rot;
+                   // HeroCameraName.HeroCameraManager.HeroObj.gameTrans.rotation = rot;
                     var camFw = closestMonster.position - CameraManager.MainCamera.position;
                     //fw.y += 0.12f;
                     var newCamRot = Quaternion.LookRotation(camFw);
-                    CameraManager.MainCamera.rotation = newCamRot;
+                    //System.Console.WriteLine(CameraManager.MainCamera.position.x + " : " + CameraManager.MainCamera.position.y + " : " + CameraManager.MainCamera.position.z);
+                    //System.Console.WriteLine(newCamRot.x + " : " + newCamRot.y + " : " + newCamRot.z);
+                    //CameraManager.MainCamera.rotation = newCamRot;
+                    */
+                    var offset = closestMonster.position;
+                    offset += new Vector3(0, 0.2f);
+                    var shit = CameraManager.MainCameraCom.WorldToScreenPoint(offset);
+                    //System.Console.WriteLine(shit.x + " : " + shit.y);
+                    var AimTarget = new Vector2(shit.x, Screen.height - shit.y);
+                    if (AimTarget != Vector2.zero)
+                    {
+                        double DistX = AimTarget.x - Screen.width / 2.0f;
+                        double DistY = AimTarget.y - Screen.height / 2.0f;
 
+                        System.Console.WriteLine(DistX + " : " + DistY);
+                        //aimsmooth
+                        DistX /= 2.5f;
+                        DistY /= 2.5f;
+
+                        mouse_event(0x0001, (int)DistX, (int)DistY, 0, 0);
+                    }
                 }
             }
         }
