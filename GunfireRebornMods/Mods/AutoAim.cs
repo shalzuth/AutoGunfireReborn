@@ -5,10 +5,8 @@ namespace GunfireRebornMods
     {
         public override void OnEnable()
         {
-            GameObject.FindObjectOfType<PCControllerAutoShoot_Logic>().speed = 100;
-            
+            GameObject.FindObjectOfType<PCControllerAutoShoot_Logic>().speed = 100;            
         }
-
         public override void Update()
         {
             AutoAimat.AimAtTarget(100f);

@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoGunfireReborn", "AutoGunfireReborn\AutoGunfireReborn.csproj", "{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{786E2464-E23C-4392-A81A-870456D7FD63} = {786E2464-E23C-4392-A81A-870456D7FD63}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyUnhollower", "Il2CppAssemblyUnhollower\AssemblyUnhollower\AssemblyUnhollower.csproj", "{B6EB4C86-9B1A-4719-8707-D84B234F7676}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnhollowerBaseLib", "Il2CppAssemblyUnhollower\UnhollowerBaseLib\UnhollowerBaseLib.csproj", "{B7C01AE9-0FC8-4751-B56D-F2ECFC72F269}"
@@ -20,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunfireRebornDumper", "Gunf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunfireRebornMods", "GunfireRebornMods\GunfireRebornMods.csproj", "{786E2464-E23C-4392-A81A-870456D7FD63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpMonoInjector", "SharpMonoInjector\src\SharpMonoInjector\SharpMonoInjector.csproj", "{853E7B3F-A045-4730-855C-CB04F9799FEF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,18 +25,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|x64.ActiveCfg = Debug|x64
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|x64.Build.0 = Debug|x64
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Debug|x86.Build.0 = Debug|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|x64.ActiveCfg = Release|x64
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|x64.Build.0 = Release|x64
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|x86.ActiveCfg = Release|Any CPU
-		{A65EBB3E-BB73-43DC-825B-DE71555EB0E5}.Release|x86.Build.0 = Release|Any CPU
 		{B6EB4C86-9B1A-4719-8707-D84B234F7676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6EB4C86-9B1A-4719-8707-D84B234F7676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6EB4C86-9B1A-4719-8707-D84B234F7676}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -116,18 +97,6 @@ Global
 		{786E2464-E23C-4392-A81A-870456D7FD63}.Release|x64.Build.0 = Release|x64
 		{786E2464-E23C-4392-A81A-870456D7FD63}.Release|x86.ActiveCfg = Release|Any CPU
 		{786E2464-E23C-4392-A81A-870456D7FD63}.Release|x86.Build.0 = Release|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|x64.ActiveCfg = Debug|x64
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|x64.Build.0 = Debug|x64
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Debug|x86.Build.0 = Debug|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|x64.ActiveCfg = Release|x64
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|x64.Build.0 = Release|x64
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|x86.ActiveCfg = Release|Any CPU
-		{853E7B3F-A045-4730-855C-CB04F9799FEF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

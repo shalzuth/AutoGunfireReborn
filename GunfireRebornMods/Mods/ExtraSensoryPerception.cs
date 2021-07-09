@@ -48,37 +48,27 @@ namespace GunfireRebornMods
                 System.Console.WriteLine("NpcLst : " + monster.FightType);
             }
         }
+        public override void Update()
+        {
+            var mon = NewPlayerManager.GetMonsters();
+            foreach (var m in mon) if (m.BloodBarCom != null) m.BloodBarCom.ShowBloodBar();
+            //foreach (var m in NewPlayerManager.MonsterLst) if (m.BloodBarCom != null) m.BloodBarCom.ShowBloodBar();
+        }
         public override void OnGUI()
         {
-            try
+            foreach (var p in NewPlayerManager.PlayerDict)
             {
-                foreach (var monster in NewPlayerManager.MonsterLst)
+                var val = p.Value;
+                if (val.centerPointTrans == null) continue;
+                if (!ShowObject(val)) continue;
+                var screenPos = CameraManager.MainCameraCom.WorldToScreenPoint(val.centerPointTrans.transform.position);
+                if (screenPos.z > 0)
                 {
-                    if (monster.BloodBarCom != null) monster.BloodBarCom.ShowBloodBar();
-                    continue;
-                    if (monster.centerPointTrans == null) continue;
-                    var screenPos = CameraManager.MainCameraCom.WorldToScreenPoint(monster.centerPointTrans.transform.position);
-                    if (screenPos.z > 0)
-                    {
-                        var dist = Vector3.Distance(HeroMoveManager.HeroObj.centerPointTrans.position, monster.centerPointTrans.position).ToString("0.0");
-                        GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 800, 50), DataMgr.GetMonsterGalleryData(monster.Shape).Name + "(" + dist + "m)");
-                    }
-                }
-                foreach (var monster in NewPlayerManager.PlayerDict)
-                {
-                    var val = monster.Value;
-                    if (val.centerPointTrans == null) continue;
-                    if (!ShowObject(val)) continue;
-                    var screenPos = CameraManager.MainCameraCom.WorldToScreenPoint(val.centerPointTrans.transform.position);
-                    if (screenPos.z > 0)
-                    {
-                        var dist = Vector3.Distance(HeroMoveManager.HeroObj.centerPointTrans.position, val.centerPointTrans.position).ToString("0.0");
-                        GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 800, 50), FightTypeToString(val) + "(" + dist + "m)");
-                        //GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 800, 50), monster.Value.SID + " : " + monster.Value.Shape + " : " + monster.Value.FightType);
-                    }
+                    var dist = Vector3.Distance(HeroMoveManager.HeroObj.centerPointTrans.position, val.centerPointTrans.position).ToString("0.0");
+                    GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 800, 50), FightTypeToString(val) + "(" + dist + "m)");
+                    //GUI.Label(new Rect(screenPos.x, Screen.height - screenPos.y, 800, 50), monster.Value.SID + " : " + monster.Value.Shape + " : " + monster.Value.FightType);
                 }
             }
-            catch { }
         }
     }
 }

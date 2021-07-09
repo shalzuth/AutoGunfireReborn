@@ -50,41 +50,20 @@ namespace GunfireRebornMods
                             closestMonster = monsterTransform;
                         }
                     }
-
-
                 }
                 if (closestMonster != null)
-                {/*
-                    var myPosition = HeroCameraName.HeroCameraManager.HeroObj.gameTrans.position;
-                    //System.Console.WriteLine(myPosition.x + " : " + myPosition.y + " : " + myPosition.z);
-                    //myPosition.y += 1;
-                    var fw = closestMonster.position - myPosition;
-                    //fw.y += 0.12f;
-                    var rot = Quaternion.LookRotation(fw);
-                   // HeroCameraName.HeroCameraManager.HeroObj.gameTrans.rotation = rot;
-                    var camFw = closestMonster.position - CameraManager.MainCamera.position;
-                    //fw.y += 0.12f;
-                    var newCamRot = Quaternion.LookRotation(camFw);
-                    //System.Console.WriteLine(CameraManager.MainCamera.position.x + " : " + CameraManager.MainCamera.position.y + " : " + CameraManager.MainCamera.position.z);
-                    //System.Console.WriteLine(newCamRot.x + " : " + newCamRot.y + " : " + newCamRot.z);
-                    //CameraManager.MainCamera.rotation = newCamRot;
-                    */
+                {
                     var offset = closestMonster.position;
                     offset += new Vector3(0, 0.2f);
-                    var shit = CameraManager.MainCameraCom.WorldToScreenPoint(offset);
-                    //System.Console.WriteLine(shit.x + " : " + shit.y);
-                    var AimTarget = new Vector2(shit.x, Screen.height - shit.y);
-                    if (AimTarget != Vector2.zero)
+                    var screenAim = CameraManager.MainCameraCom.WorldToScreenPoint(offset);
+                    var aimTarget = new Vector2(screenAim.x, Screen.height - screenAim.y);
+                    if (aimTarget != Vector2.zero)
                     {
-                        double DistX = AimTarget.x - Screen.width / 2.0f;
-                        double DistY = AimTarget.y - Screen.height / 2.0f;
-
-                        System.Console.WriteLine(DistX + " : " + DistY);
-                        //aimsmooth
-                        DistX /= 2.5f;
-                        DistY /= 2.5f;
-
-                        mouse_event(0x0001, (int)DistX, (int)DistY, 0, 0);
+                        var x = aimTarget.x - Screen.width / 2.0f;
+                        var y = aimTarget.y - Screen.height / 2.0f;
+                        x /= 2.5f;
+                        y /= 2.5f;
+                        mouse_event(0x0001, (int)x, (int)y, 0, 0);
                     }
                 }
             }
