@@ -53,6 +53,8 @@ namespace GunfireRebornMods
         public static GameObject BaseObject;
         public static void Setup()
         {
+            IL2CPP.il2cpp_thread_attach(IL2CPP.il2cpp_domain_get());
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Console.WriteLine(Environment.Version);
             Console.WriteLine(Application.unityVersion);
             Console.WriteLine(Directory.GetCurrentDirectory());
@@ -63,31 +65,33 @@ namespace GunfireRebornMods
             LogSupport.InfoHandler += LogSupport_TraceHandler;
             LogSupport.WarningHandler += LogSupport_TraceHandler;
 
-            //ClassInjector.Detour = new DoHookDetour();
-            IL2CPP.il2cpp_thread_attach(IL2CPP.il2cpp_domain_get());
-            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            ClassInjector.DoHook?.GetInvocationList().ToList().ForEach(d => ClassInjector.DoHook -= (Action<IntPtr, IntPtr>)d);
-            ClassInjector.DoHook += JmpPatch;
+            ClassInjector.Detour = new DoHookDetour();
+            //ClassInjector.DoHook?.GetInvocationList().ToList().ForEach(d => ClassInjector.DoHook -= (Action<IntPtr, IntPtr>)d);
+            //ClassInjector.DoHook += JmpPatch;
             ClassInjector.RegisterTypeInIl2Cpp<ModManager>();
             while (BaseObject = GameObject.Find("ModManager")) GameObject.DestroyImmediate(BaseObject);
             BaseObject = new GameObject("ModManager");
             GameObject.DontDestroyOnLoad(BaseObject);
-
             var modMgr = BaseObject.AddComponent<ModManager>();
             var types = Assembly.GetExecutingAssembly().GetTypes().ToList().Where(t => t.BaseType == typeof(ModBase) && !t.IsNested);
             foreach (var type in types) modMgr.Mods.Add((ModBase)Activator.CreateInstance(type));
         }
-        /*unsafe class DoHookDetour : IManagedDetour
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            private static readonly List<object> PinnedDelegates = new List<object>();
-            public T Detour<T>(IntPtr @from, T to) where T : Delegate
-            {
-                IntPtr* targetVarPointer = &from;
-                PinnedDelegates.Add(to);
-                //JmpPatch((IntPtr)targetVarPointer, Marshal.GetFunctionPointerForDelegate(to));
-                return Marshal.GetDelegateForFunctionPointer<T>(from);
-            }
-        }*/
+            LogSupport.Info(e.ToString());
+        }
+        unsafe class DoHookDetour : IManagedDetour
+        {
+           private static readonly List<object> PinnedDelegates = new List<object>();
+           public T Detour<T>(IntPtr @from, T to) where T : Delegate
+           {
+               IntPtr* targetVarPointer = &from;
+               PinnedDelegates.Add(to);
+               JmpPatch((IntPtr)targetVarPointer, Marshal.GetFunctionPointerForDelegate(to));
+               return Marshal.GetDelegateForFunctionPointer<T>(from);
+           }
+        }
 
         private static void LogSupport_TraceHandler(string obj)
         {
@@ -114,7 +118,7 @@ namespace GunfireRebornMods
             jmpToOrig.AddRange(new Byte[] { 0x49, 0xBB }); // mov r11, replacement
             jmpToOrig.AddRange(BitConverter.GetBytes((origCodeLoc + origCode.Length).ToInt64()));
             jmpToOrig.AddRange(new Byte[] { 0x41, 0xFF, 0xE3 }); // jmp r11
-            var newFuncLocation = VirtualAllocEx(GetCurrentProcess(), IntPtr.Zero, 0x100, 0x3000, 0x40);
+            var newFuncLocation = VirtualAllocEx(GetCurrentProcess(), IntPtr.Zero, 0x100, 0x3000, 0x40); // Marshal.Alloc doesn't work here?
             Marshal.Copy(jmpToOrig.ToArray(), 0, newFuncLocation, jmpToOrig.ToArray().Length);
 
             VirtualProtect(origCodeLoc, (UIntPtr)jmpToNew.ToArray().Length, (UInt32)0x40, out UInt32 old);

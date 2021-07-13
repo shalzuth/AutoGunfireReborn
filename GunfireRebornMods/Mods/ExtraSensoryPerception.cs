@@ -1,6 +1,4 @@
 ﻿using DataHelper;
-using Il2CppSystem;
-using Il2CppSystem.Collections.Generic;
 using UnityEngine;
 
 namespace GunfireRebornMods
@@ -20,7 +18,7 @@ namespace GunfireRebornMods
             return false;
 
         }
-        public String FightTypeToString(NewPlayerObject obj)
+        public string FightTypeToString(NewPlayerObject obj)
         {
             if (obj.FightType == ServerDefine.FightType.NWARRIOR_DROP_EQUIP) return DataMgr.GetWeaponData(obj.Shape).Name + " +" + obj.DropOPCom.WeaponInfo.SIProp.Grade.ToString();
             else if (obj.FightType == ServerDefine.FightType.NWARRIOR_DROP_RELIC) return DataMgr.GetRelicData(obj.DropOPCom.RelicSid).Name;
@@ -41,7 +39,7 @@ namespace GunfireRebornMods
             foreach (var monster in NewPlayerManager.PlayerDict)
             {
                 var val = monster.Value;
-                System.Console.WriteLine("PlayerDict : " + monster.value.FightType);
+                System.Console.WriteLine("PlayerDict : " + monster.Value.FightType);
             }
             foreach (var monster in NewPlayerManager.NpcLst)
             {

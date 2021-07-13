@@ -40,16 +40,33 @@ namespace GunfireRebornDumper
                 var Il2CppDumperMain = Il2CppDumperProgram.GetMethods(BindingFlags.NonPublic | BindingFlags.Static).FirstOrDefault(m => m.Name == "Main");
                 Il2CppDumperMain.Invoke(null, new object[1] { (new string[2] { gamePath + gameName + @"_Data\il2cpp_data\Metadata\global-metadata.dat", gamePath + @"GameAssembly.dll" }) });
             }
-            var options = new AssemblyUnhollower.UnhollowerOptions();
-            options.AdditionalAssembliesBlacklist.Add("Mono.Security"); // always blacklist this one
-            options.AdditionalAssembliesBlacklist.Add("Newtonsoft.Json"); // always blacklist this one
-            options.UnityBaseLibsDir = AppDomain.CurrentDomain.BaseDirectory + "DummyDll";
-            options.SourceDir = AppDomain.CurrentDomain.BaseDirectory + "DummyDll";
-            options.OutputDir = AppDomain.CurrentDomain.BaseDirectory + "ProxyDll";
-            options.MscorlibPath = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorlib.dll";// AppDomain.CurrentDomain.BaseDirectory + @"lib\mscorlib.dll";
-            var AssemblyUnhollowerProgram = Type.GetType("AssemblyUnhollower.Program, AssemblyUnhollower");
-            var AssemblyUnhollowerMain = AssemblyUnhollowerProgram.GetMethods(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(m=>m.Name == "Main" && m.GetParameters()[0].ParameterType == typeof(AssemblyUnhollower.UnhollowerOptions));
-            AssemblyUnhollowerMain.Invoke(null, new object[1] { options });
+            if (false)
+            {
+                var options = new AssemblyUnhollower.UnhollowerOptions();
+                options.AdditionalAssembliesBlacklist.Add("Mono.Security"); // always blacklist this one
+                options.AdditionalAssembliesBlacklist.Add("Newtonsoft.Json"); // always blacklist this one
+                options.UnityBaseLibsDir = AppDomain.CurrentDomain.BaseDirectory + "DummyDll";
+                options.SourceDir = AppDomain.CurrentDomain.BaseDirectory + "DummyDll";
+                options.OutputDir = AppDomain.CurrentDomain.BaseDirectory + "ProxyDll";
+                options.MscorlibPath = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorlib.dll";// AppDomain.CurrentDomain.BaseDirectory + @"lib\mscorlib.dll";
+                var AssemblyUnhollowerProgram = Type.GetType("AssemblyUnhollower.Program, AssemblyUnhollower");
+                var AssemblyUnhollowerMain = AssemblyUnhollowerProgram.GetMethods(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(m => m.Name == "Main" && m.GetParameters()[0].ParameterType == typeof(AssemblyUnhollower.UnhollowerOptions));
+                AssemblyUnhollowerMain.Invoke(null, new object[1] { options });
+            }
+            if (true)
+            {
+                Minifier.Minify(@"..\..\..\..\GunfireRebornMods\bin\x64\Debug\GunfireRebornMods.exe");
+                var options = new AssemblyUnhollower.UnhollowerOptions();
+                options.AdditionalAssembliesBlacklist.Add("Mono.Security"); // always blacklist this one
+                options.AdditionalAssembliesBlacklist.Add("Newtonsoft.Json"); // always blacklist this one
+                options.UnityBaseLibsDir = AppDomain.CurrentDomain.BaseDirectory + "StrippedDll";
+                options.SourceDir = AppDomain.CurrentDomain.BaseDirectory + "StrippedDll";
+                options.OutputDir = AppDomain.CurrentDomain.BaseDirectory + "FinalDll";
+                options.MscorlibPath = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorlib.dll";// AppDomain.CurrentDomain.BaseDirectory + @"lib\mscorlib.dll";
+                var AssemblyUnhollowerProgram = Type.GetType("AssemblyUnhollower.Program, AssemblyUnhollower");
+                var AssemblyUnhollowerMain = AssemblyUnhollowerProgram.GetMethods(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(m => m.Name == "Main" && m.GetParameters()[0].ParameterType == typeof(AssemblyUnhollower.UnhollowerOptions));
+                AssemblyUnhollowerMain.Invoke(null, new object[1] { options });
+            }
         }
     }
 }

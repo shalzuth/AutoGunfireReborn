@@ -10,9 +10,10 @@
         public override void Update()
         {
             if (orig == 0) orig = HeroMoveManager.HMMJS.jumping.baseHeight; //HeroMoveManager.HMMJS.jumping.StoredDefaultHeight;// HeroMoveManager.HMMJS.jumping.baseHeight;
+            HeroMoveManager.HMMJS.jumping.baseHeight = (SliderVal * SliderVal) / (HeroMoveManager.HMMJS.movement.gravity * 2);
+
             //HeroMoveManager.HMMJS?.SetJumperHeight(SliderVal);
             //HeroMoveManager.HMMJS.jumping.StoredDefaultHeight = HeroMoveManager.HMMJS.jumping.baseHeight;
-            HeroMoveManager.HMMJS.jumping.baseHeight = (SliderVal * SliderVal) / (HeroMoveManager.HMMJS.movement.gravity * 2);
         }
         public override void OnDisable()
         {

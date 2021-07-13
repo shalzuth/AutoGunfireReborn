@@ -55,6 +55,18 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.11.4\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,11 +77,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Minifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Il2CppAssemblyUnhollower\AssemblyUnhollower\AssemblyUnhollower.csproj">
@@ -79,6 +93,10 @@
     <ProjectReference Include="..\Il2CppAssemblyUnhollower\UnhollowerBaseLib\UnhollowerBaseLib.csproj">
       <Project>{b7c01ae9-0fc8-4751-b56d-f2ecfc72f269}</Project>
       <Name>UnhollowerBaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Il2CppAssemblyUnhollower\UnhollowerRuntimeLib\UnhollowerRuntimeLib.csproj">
+      <Project>{a969803f-c2af-4e42-b772-a48c18116cbc}</Project>
+      <Name>UnhollowerRuntimeLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\Il2CppDumper\Il2CppDumper\Il2CppDumper.csproj">
       <Project>{8975d064-7ece-49ee-a68d-f52d22b4d98f}</Project>

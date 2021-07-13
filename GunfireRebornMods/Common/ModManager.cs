@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnhollowerBaseLib;
-using System.Runtime.InteropServices;
 
 namespace GunfireRebornMods
 {
@@ -19,7 +16,7 @@ namespace GunfireRebornMods
             var area = new Rect(25, 25, 150, 250);
             GUI.Box(area, "shalzuth's mods");
             GUILayout.BeginArea(area);
-            GUILayout.Space(12);
+            GUILayout.Space(20);
             foreach (var mod in Mods)
             {
                 var val = GUILayout.Toggle(mod.Enabled, mod.GetType().Name, GUILayoutOption);
@@ -34,6 +31,7 @@ namespace GunfireRebornMods
             }
             GUILayout.EndArea();
         }
+
         void Update()
         {
             foreach (var mod in Mods) if (mod.Enabled) mod.Update();
