@@ -18,7 +18,10 @@ namespace GunfireRebornMods
                 var closestMonsterDist = 99999f;
                 foreach (var monster in monsters)
                 {
-                    var monsterTransform = monster.BodyPartCom.GetWeakTrans(true);
+                    if (monster == null) continue;
+                    var bodyPartCom = monster.BodyPartCom;
+                    if (bodyPartCom == null) continue;
+                    var monsterTransform = bodyPartCom.GetWeakTrans(true);
                     if (monsterTransform == null) continue;
                     var vec = CameraManager.MainCameraCom.WorldToViewportPoint(monsterTransform.position);
                     if (true)
